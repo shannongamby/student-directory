@@ -2,10 +2,10 @@ def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return"
   students = []
-  name = gets.chomp
+  name = gets.tr("\n", "")
   while !name.empty? do
     puts "And the cohort?"
-    cohort = gets.chomp
+    cohort = gets.tr("\n", "")
     if cohort == ""
        cohort = "october"
     end
@@ -15,7 +15,7 @@ def input_students
     else
       puts "Now we have #{students.count} students. Enter another name."
     end
-    name = gets.chomp
+    name = gets.tr("\n", "")
   end
   return students
 end
