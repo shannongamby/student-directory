@@ -18,7 +18,7 @@ end
 
 def print(students)
     students.each_with_index { |student, i|
-      if student[:name][0] == "H" or student[:name][0] == "h"
+      if student[:name][0] == "H" or student[:name][0] == "h" and student[:name].size < 12
         puts "#{i + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
       end
     }
