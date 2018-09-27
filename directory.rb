@@ -10,7 +10,11 @@ def input_students
        cohort = "october"
     end
     students << {name: name, cohort: cohort.to_sym, country: :UK}
-    puts "Now we have #{students.count} students. Enter another name."
+    if students.length == 1
+      puts "Now we have #{students.count} student. Enter another name."
+    else
+      puts "Now we have #{students.count} students. Enter another name."
+    end
     name = gets.chomp
   end
   return students
