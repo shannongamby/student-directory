@@ -26,11 +26,19 @@ def print_header
 end
 
 def print(students)
-  i = 0
-  while i < students.size
-    puts "#{i + 1}. #{students[i][:name]} (#{students[i][:cohort]} cohort, #{students[i][:country]})".center(50)
-    i += 1
+  grouped = {}
+  students.each { |h|
+  if grouped.keys.include? h[:cohort]
+    grouped[h[:cohort]].push(h[:name])
+  else
+    grouped[h[:cohort]] = [h[:name]]
   end
+  }
+
+  grouped.each { |cohort, names|
+    puts "#{cohort} cohort: ".center(50)
+    names.each { |name| puts name.center(50) }
+  }
 end
 
 def print_footer(students)
