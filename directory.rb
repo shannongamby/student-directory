@@ -75,8 +75,10 @@ def process(selection)
     show_students
   when "3"
     save_students
+    puts "Saved to students.csv"
   when "4"
     load_students
+    puts "Loaded students.csv"
   when "9"
     exit
   else
