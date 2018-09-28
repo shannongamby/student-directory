@@ -91,22 +91,22 @@ def process(selection)
 end
 
 def save_students(filename)
-  file = File.open("#{filename}", "w")
-  @students.each { |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+  File.open("#{filename}", "w") { |file|
+    @students.each { |student|
+      student_data = [student[:name], student[:cohort]]
+      csv_line = student_data.join(",")
+      file.puts csv_line
+    }
   }
-  file.close
 end
 
 def load_students(filename = "students.csv")
-  file = File.open(filename, "r")
-  file.readlines.each { |line|
-    name, cohort = line.chomp.split(',')
+  File.open(filename, "r") { |file|
+    file.readlines.each { |line|
+      name, cohort = line.chomp.split(',')
       add_students(name, cohort)
     }
-  file.close
+  }
 end
 
 def try_load_students
