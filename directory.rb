@@ -10,7 +10,7 @@ def input_students
     if cohort == ""
        cohort = "october"
     end
-    @students << {name: name, cohort: cohort.to_sym}
+    add_students(name, cohort)
     if @students.length == 1
       puts "Now we have #{@students.count} student. Enter another name."
     else
@@ -98,7 +98,7 @@ def load_students(filename = "students.csv")
   file = File.open(filename, "r")
   file.readlines.each { |line|
     name, cohort = line.chomp.split(',')
-      @students << {name: name, cohort: cohort.to_sym}
+      add_students(name, cohort)
     }
   file.close
 end
@@ -113,6 +113,10 @@ def try_load_students
     puts "Sorry, #{filename} doesn't exist."
     exit
   end
+end
+
+def add_students(name, cohort)
+  @students << {name: name, cohort: cohort.to_sym}
 end
 
 try_load_students
