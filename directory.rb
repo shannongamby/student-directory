@@ -1,3 +1,4 @@
+require 'csv'
 @students = []
 
 def input_students
@@ -91,21 +92,18 @@ def process(selection)
 end
 
 def save_students(filename)
-  File.open("#{filename}", "w") { |file|
+  CSV.open("#{filename}", "w") { |file|
     @students.each { |student|
       student_data = [student[:name], student[:cohort]]
-      csv_line = student_data.join(",")
-      file.puts csv_line
+      file << student_data
     }
   }
 end
 
 def load_students(filename = "students.csv")
-  File.open(filename, "r") { |file|
-    file.readlines.each { |line|
-      name, cohort = line.chomp.split(',')
-      add_students(name, cohort)
-    }
+  CSV.foreach(filename) { |line|
+    name, cohort = line
+    add_students(name, cohort)
   }
 end
 
